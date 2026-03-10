@@ -1,0 +1,24 @@
+model:
+  pretrained_path: black-forest-labs/FLUX.2-klein-base-9B
+  dtype: bfloat16
+  transformer_override_path: ""
+
+adapter:
+  path: ./outputs/i2i_run/final/lora_weights
+
+lora:
+  rank: 64
+  alpha: 64
+  target_modules:
+    - to_q
+
+inference:
+  prompts:
+    - "Generate an output image that respects the reference structure and matches the requested visual direction."
+  condition_image: ./data/image_to_image/eval/condition.png
+  output_dir: ./outputs/i2i_inference
+  num_inference_steps: 30
+  guidance_scale: 4.0
+  seeds: [42]
+  height: 512
+  width: 512

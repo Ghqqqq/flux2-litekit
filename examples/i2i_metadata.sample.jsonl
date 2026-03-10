@@ -1,0 +1,2 @@
+{"cond_file": "cond/0000000.png", "target_file": "target/0000000.png", "text": "Generate an output image that follows the reference content and requested style constraints."}
+{"cond_file": "cond/0000001.png", "target_file": "target/0000001.png", "text": "Produce a target image aligned with the conditioning image while preserving composition."}

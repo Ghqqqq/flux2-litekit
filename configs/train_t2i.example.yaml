@@ -1,0 +1,56 @@
+model:
+  pretrained_path: black-forest-labs/FLUX.2-klein-base-9B
+  dtype: bfloat16
+  transformer_override_path: ""
+
+lora:
+  rank: 64
+  alpha: 64
+  dropout: 0.05
+  target_modules:
+    - to_q
+    - to_k
+    - to_v
+    - to_out.0
+    - add_q_proj
+    - add_k_proj
+    - add_v_proj
+    - to_add_out
+
+bootstrap:
+  init_lora_path: ""
+
+data:
+  train_dir: ./data/text_to_image/train
+  metadata_file: ./data/text_to_image/train/metadata.jsonl
+  resolution: 512
+
+training:
+  batch_size: 1
+  gradient_accumulation_steps: 8
+  learning_rate: 1.0e-5
+  optimizer: adamw
+  lr_scheduler: cosine
+  lr_warmup_steps: 500
+  max_train_steps: 1000
+  gradient_checkpointing: true
+  max_grad_norm: 1.0
+  seed: 42
+  dataloader_num_workers: 4
+  weight_decay: 1.0e-2
+  log_lora_norm_every: 10
+  mixed_precision: "no"
+
+checkpointing:
+  output_dir: ./outputs/t2i_run
+  save_every_n_steps: 200
+
+evaluation:
+  eval_every_n_steps: 200
+  output_dir: ./outputs/t2i_run/eval_samples
+  prompt: "A clean studio render of a stylized object with crisp edges and balanced lighting."
+  num_inference_steps: 30
+  guidance_scale: 4.0
+  seed: 42
+  height: 512
+  width: 512
