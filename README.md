@@ -123,6 +123,37 @@ bootstrap:
 
 Leave the field empty to start from a fresh LoRA initialization.
 
+Common examples:
+
+```yaml
+# Continue training a new t2i LoRA from a previous t2i adapter.
+bootstrap:
+  init_lora_path: ./outputs/previous_t2i_run/final/lora_weights
+```
+
+```yaml
+# Start i2i training from an existing t2i adapter.
+bootstrap:
+  init_lora_path: ./outputs/t2i_run/final/lora_weights
+```
+
+You can point `init_lora_path` to either:
+
+- `final/lora_weights/`
+- `checkpoint-<step>/lora_weights/`
+
+Dedicated bootstrap config examples are included:
+
+```bash
+python -m flux2_litekit.train \
+  --task t2i \
+  --config configs/train_t2i_bootstrap.example.yaml
+
+python -m flux2_litekit.train \
+  --task i2i \
+  --config configs/train_i2i_bootstrap.example.yaml
+```
+
 ## Inference
 
 Run text-to-image inference:

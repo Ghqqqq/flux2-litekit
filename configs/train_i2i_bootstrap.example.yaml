@@ -18,9 +18,8 @@ lora:
     - to_add_out
 
 bootstrap:
-  # Set this to an existing adapter directory to initialize a new LoRA from it.
-  # Example: ./outputs/t2i_run/final/lora_weights
-  init_lora_path: ""
+  # Initialize i2i training from an existing t2i or i2i adapter.
+  init_lora_path: ./outputs/t2i_run/final/lora_weights
 
 data:
   train_root: ./data/image_to_image/train
@@ -43,12 +42,12 @@ training:
   mixed_precision: "no"
 
 checkpointing:
-  output_dir: ./outputs/i2i_run
+  output_dir: ./outputs/i2i_bootstrap_run
   save_every_n_steps: 200
 
 evaluation:
   eval_every_n_steps: 200
-  output_dir: ./outputs/i2i_run/eval_samples
+  output_dir: ./outputs/i2i_bootstrap_run/eval_samples
   prompt: "Generate an output image that follows the reference input while preserving the requested composition."
   condition_image: ./data/image_to_image/eval/condition.png
   num_inference_steps: 30

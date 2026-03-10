@@ -18,6 +18,8 @@ lora:
     - to_add_out
 
 bootstrap:
+  # Set this to an existing adapter directory to initialize a new LoRA from it.
+  # Example: ./outputs/previous_t2i_run/final/lora_weights
   init_lora_path: ""
 
 data:
