@@ -197,36 +197,6 @@ The helper scripts support a few common environment overrides:
 - `INFER_EXTRA_ARGS`: append additional arguments to the inference CLI
 - `PYTHON_BIN`: choose the Python interpreter used by the inference scripts
 
-## Publish to GitHub
-
-Typical flow:
-
-```bash
-cd opensource_flux2finetune
-git init
-git add .
-git commit -m "Initial open-source release"
-git branch -M main
-git remote add origin git@github.com:<your-name>/flux2-litekit.git
-git push -u origin main
-```
-
-If you prefer the local directory name to match the repository name before publishing:
-
-```bash
-mv opensource_flux2finetune flux2-litekit
-cd flux2-litekit
-```
-
-## Development Checks
-
-Local syntax checks:
-
-```bash
-python -m py_compile flux2_litekit/*.py
-bash -n scripts/*.sh
-```
-
 ## Notes
 
 - `i2i` training in this package follows the stock `Flux2KleinPipeline` img2img contract.
